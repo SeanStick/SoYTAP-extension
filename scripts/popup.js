@@ -10,8 +10,15 @@ socket.on('refresh', function (data) {
   for(var i=0; i < data.length; i++){
     console.log(data[i]);
     if(data[i].type == 'RTC'){
-      var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data[i].card;
-      feed.innerHTML += '<a href=' + url + ' target="_blank">' + data[i].card + '</a><hr/>'
+      if(Array.isArray(data[i].card)){
+        for(var j=0; j < data[i].card.length; j++){
+          var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data[i].card[j];
+          feed.innerHTML += '<a href=' + url + ' target="_blank">' + data[i].card[j] + '</a><hr/>'
+        }
+      } else {
+        var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data[i].card;
+        feed.innerHTML += '<a href=' + url + ' target="_blank">' + data[i].card + '</a><hr/>'
+      }
     }
   }
 });
