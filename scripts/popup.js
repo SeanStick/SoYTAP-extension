@@ -32,3 +32,6 @@ socket.on('refresh', function (data) {
 socket.on('new rtc item', function (data) {
   console.log(data);
 });
+document.getElementById('clear').addEventListener('click', function(){
+  socket.emit('clear');
+});
