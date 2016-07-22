@@ -16,7 +16,7 @@ socket.on('new other item', function (data) {
       type: "basic",
       title: "New Message",
       message: data.message,
-      iconUrl: "/images/icon__c.png"
+      iconUrl: "/images/icon128__c.png"
     }
     lastId = null;
     chrome.notifications.create(null, options, null);
@@ -44,7 +44,7 @@ socket.on('new rtc item', function (data) {
           type: "basic",
           title: "New RTC Notification",
           message: data.card[j],
-          iconUrl: "/images/icon__c.png"
+          iconUrl: "/images/icon128__c.png"
         }
         lastId = data.card;
         var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data.card[j];
@@ -56,7 +56,7 @@ socket.on('new rtc item', function (data) {
         type: "basic",
         title: "New RTC Notification",
         message: data.card,
-        iconUrl: "/images/icon__c.png"
+        iconUrl: "/images/icon128__c.png"
       }
       var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data.card[j];
       chrome.notifications.create(data.card, options, null);
@@ -73,6 +73,10 @@ chrome.notifications.onClicked.addListener(function (id){
 
 var extOptions;
 chrome.storage.onChanged.addListener(function(changes, namespace) {
+  resetOptions();
+});
+
+function resetOptions(){
   chrome.storage.sync.get({
     user: '',
     toast: true,
@@ -81,4 +85,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     console.log("options: " + JSON.stringify(opts));
     extOptions = opts;
   });
-});
+}
+
+resetOptions();
