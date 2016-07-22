@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "force query",
+    "description": "Force Query"
+  },
+  "appDescription": {
+    "message": "force query description",
+    "description": "An extension that allows you to view the values of other fields on the record"
+  }
+}

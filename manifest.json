@@ -1,0 +1,32 @@
+{
+    "name": "SoYTAP",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "A feed of SoYTAP entries!",
+    "icons": {
+        "16": "images/icon16__c.png",
+        "128": "images/icon128__c.png"
+    },
+    "default_locale": "en",
+    "background": {
+        "scripts": [
+          "scripts/socket.io.js",
+          "scripts/background.js"
+        ]
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/icon19__c.png",
+            "38": "images/icon__c.png"
+        },
+        "default_title": "SoYTAP",
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html",
+    "permissions": [
+      "storage",
+      "notifications",
+      "http://localhost:3000/",
+      "http://soytap.azurewebsites.net/"
+    ]
+}
