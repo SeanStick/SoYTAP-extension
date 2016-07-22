@@ -10,17 +10,19 @@ socket.on('refresh', function (data) {
 socket.on('new rtc item', function (data) {
   console.log(data);
   var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data.card
-  if(data.toast){
+  if(data.openTab){
     window.open(url);
   }
-  var options = {
-    type: "basic",
-    title: "New RTC Notification",
-    message: data.card,
-    iconUrl: "/images/icon__c.png"
+  if(data.toast){
+    var options = {
+      type: "basic",
+      title: "New RTC Notification",
+      message: data.card,
+      iconUrl: "/images/icon__c.png"
+    }
+    chrome.notifications.create(data.card, options, null);
   }
   lastId = data.card;
-  chrome.notifications.create(data.card, options, null);
 });
 
 chrome.notifications.onClicked.addListener(function (id){
