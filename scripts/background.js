@@ -10,7 +10,8 @@ socket.on('refresh', function (data) {
 
 socket.on('new other item', function (data) {
   console.log(data);
-  if(data.toast){
+  console.log('other' + JSON.stringify(extOptions));
+  if(data.toast && extOptions.toast){
     var options = {
       type: "basic",
       title: "New Message",
@@ -24,7 +25,7 @@ socket.on('new other item', function (data) {
 
 socket.on('new rtc item', function (data) {
   console.log(data);
-  if(data.openTab){
+  if(data.openTab && extOptions.openTab){
     if(Array.isArray(data.card)){
       for(var j=0; j < data.card.length; j++){
         var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data.card[j];
@@ -36,7 +37,7 @@ socket.on('new rtc item', function (data) {
     }
   }
 
-  if(data.toast){
+  if(data.toast && extOptions.toast){
     if(Array.isArray(data.card)){
       for(var j=0; j < data.card.length; j++){
         var options = {
@@ -68,4 +69,16 @@ chrome.notifications.onClicked.addListener(function (id){
     var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + id
     window.open(url);
   }
+});
+
+var extOptions;
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  chrome.storage.sync.get({
+    user: '',
+    toast: true,
+    openTab: true
+  }, function(opts) {
+    console.log("options: " + JSON.stringify(opts));
+    extOptions = opts;
+  });
 });
