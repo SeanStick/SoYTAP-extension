@@ -6,6 +6,6 @@ var socket = io.connect('http://soytap.azurewebsites.net/');
 socket.on('refresh', function (data) {
   console.log(data);
 });
-socket.on('new item', function (data) {
+socket.on('new rtc item', function (data) {
   console.log(data);
 });

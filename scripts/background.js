@@ -7,7 +7,7 @@ var lastId;
 socket.on('refresh', function (data) {
   console.log(data);
 });
-socket.on('new item', function (data) {
+socket.on('new rtc item', function (data) {
   console.log(data);
   var url = "http://rtc.nwie.net/jazz/web/projects/Dev%20Center#action=com.ibm.team.workitem.viewWorkItem&id=" + data.card
   if(data.toast){
@@ -15,8 +15,8 @@ socket.on('new item', function (data) {
   }
   var options = {
     type: "basic",
-    title: "New Notification",
-    message: JSON.stringify(data),
+    title: "New RTC Notification",
+    message: data.card,
     iconUrl: "/images/icon__c.png"
   }
   lastId = data.card;
