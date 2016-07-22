@@ -7,9 +7,23 @@ var lastId;
 socket.on('refresh', function (data) {
   console.log(data);
 });
+
+socket.on('new other item', function (data) {
+  console.log(data);
+  if(data.toast){
+    var options = {
+      type: "basic",
+      title: "New Message",
+      message: data.message,
+      iconUrl: "/images/icon__c.png"
+    }
+    lastId = null;
+    chrome.notifications.create(null, options, null);
+  }
+});
+
 socket.on('new rtc item', function (data) {
   console.log(data);
-
   if(data.openTab){
     if(Array.isArray(data.card)){
       for(var j=0; j < data.card.length; j++){
