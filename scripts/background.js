@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io.connect('http://soytap.azurewebsites.net/');
+var socket = io.connect('https://hackathon--1378.appspot.com/');
 //var socket = io.connect('http://localhost:3000/');
 
 var lastId;
